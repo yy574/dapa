@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dashboard</title>
+
+<style>
+    body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+        color: white;
+        overflow-x: hidden;
+    }
+
+    #bg-video {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        z-index: -1;
+    }
+
+    .navbar {
+        position: fixed;
+        top: 0;
+        width: 100%;
+        padding: 15px;
+        background: rgba(0,0,0,0.5);
+        backdrop-filter: blur(4px);
+        display: flex;
+        justify-content: center;
+        gap: 30px;
+        z-index: 1000;
+    }
+
+    .navbar a {
+        text-decoration: none;
+        color: white;
+        font-size: 16px;
+        padding: 5px 5px;
+        border-radius: 10px;
+        transition: 0.2s;
+        cursor: pointer;
+    }
+
+    .navbar a:hover, .active {
+        background: rgba(255, 255, 0, 0.6);
+        box-shadow: 0 0 15px yellow;
+    }
+
+    .page {
+        display: none;
+        padding-top: 120px;
+        text-align: center;
+        min-height: 100vh;
+    }
+
+    .box {
+        width: 80%;
+        margin: auto;
+        padding: 20px;
+        background: rgba(255,255,255,0.08);
+        border-radius: 15px;
+        backdrop-filter: blur(4px);
+        box-shadow: 0 0 15px yellow;
+    }
+
+    .contact-btn {
+        display: block;
+        width: 80%;
+        margin: 15px auto;
+        padding: 15px;
+        font-size: 18px;
+        background: rgba(255,255,255,0.15);
+        backdrop-filter: blur(8px);
+        border-radius: 12px;
+        color: white;
+        text-decoration: none;
+        transition: .2s;
+    }
+
+    .contact-btn:hover {
+        transform: scale(1.05);
+        background: rgba(255,255,0,0.3);
+    }
+
+    .grid {
+        display: grid;
+        grid-template-columns: repeat(3, 100px);
+        gap: 10px;
+        justify-content: center;
+        margin-top: 20px;
+    }
+
+    .cell {
+        width: 100px;
+        height: 100px;
+        font-size: 40px;
+        background: rgba(255,255,255,0.2);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        border-radius: 10px;
+        backdrop-filter: blur(5px);
+    }
+
+    #resetBtn {
+        margin-top: 20px;
+        padding: 10px 20px;
+        font-size: 18px;
+        border: none;
+        border-radius: 8px;
+        background: yellow;
+        cursor: pointer;
+    }
+</style>
+</head>
+<body>
+
+<video autoplay loop muted id="bg-video">
+    <source src="video.mp4" type="video/mp4">
+</video>
+
+<audio autoplay loop>
+    <source src="audio.mp3" type="audio/mp3">
+</audio>
+
+<div class="navbar">
+    <a class="menu active" onclick="showPage('home')">Home</a>
+    <a class="menu" onclick="showPage('game')">Game</a>
+    <a class="menu" onclick="showPage('profil')">Profil</a>
+    <a class="menu" onclick="showPage('contact')">Contact</a>
+    <a class="menu" onclick="logout()">Logout</a>
+</div>
+
+<!-- HOME -->
+<div id="home" class="page" style="display:block;">
+    <h1 style="text-shadow:0 0 10px yellow;">⚡ Selamat Datang Di Dashboard Saya ⚡</h1>
+    <div class="box">
+        <p>Halo! Ini adalah halaman utama dashboard yang sudah saya buat.
+Di sini kamu bisa mengakses berbagai menu seperti Game, Profil, dan Contact hanya dengan sekali klik.
+
+Dashboard ini dirancang agar mudah digunakan dan nyaman dilihat, sehingga kamu bisa menjelajahi setiap fitur dengan cepat dan praktis.
+Silakan pilih menu di atas untuk mulai mencoba semua fitur yang tersedia.</p>
+    </div>
+</div>
+
+<!-- GAME -->
+<div id="game" class="page">
+    <h1>⚡ Game Tic Tac Toe ⚡</h1>
+    <div class="grid">
+        <div class="cell" onclick="clickCell(0)"></div>
+        <div class="cell" onclick="clickCell(1)"></div>
+        <div class="cell" onclick="clickCell(2)"></div>
+        <div class="cell" onclick="clickCell(3)"></div>
+        <div class="cell" onclick="clickCell(4)"></div>
+        <div class="cell" onclick="clickCell(5)"></div>
+        <div class="cell" onclick="clickCell(6)"></div>
+        <div class="cell" onclick="clickCell(7)"></div>
+        <div class="cell" onclick="clickCell(8)"></div>
+    </div>
+    <button id="resetBtn" onclick="resetGame()">Mulai Ulang</button>
+</div>
+
+<!-- PROFIL -->
+<div id="profil" class="page">
+    <h1>⚡ Profil Kamu ⚡</h1>
+    <div class="box">
+        <p>Nama:Dava dwi</p>
+        <p>Kelas:XI TJKT 1</p>
+        <p>Hobi:futsal</p>
+        <p>Umur:16 Tahun</p>
+        <p>Alamat:Dsn.wonomerto kec.wonosalam kab.jombang</p>
+        <p>Cita-Cita: - </p>
+    </div>
+</div>
+
+<!-- CONTACT -->
+<div id="contact" class="page">
+    <h2>⚡ Media Sosial Saya ⚡</h2>
+
+    <a href="https://www.instagram.com/dpa.gndk?igsh=cXp0ZDZqanFtbDBh" target="_blank" class="contact-btn">Instagram 🥶</a>
+    <a href="https://wa.me/qr/RSJDGANZXSN6A1" target="_blank" class="contact-btn">WhatsApp 🍫</a>
+    <a href="https://www.tiktok.com/@dpagndk?_r=1&_t=ZS-929IKGXojiu" target="_blank" class="contact-btn">TikTok 😜</a>
+</div>
+
+<script>
+function showPage(page) {
+    document.querySelectorAll('.page').forEach(p => p.style.display = "none");
+    document.getElementById(page).style.display = "block";
+
+    document.querySelectorAll('.menu').forEach(m => m.classList.remove("active"));
+    event.target.classList.add("active");
+}
+
+let turn = "X";
+let board = ["", "", "", "", "", "", "", "", ""];
+
+function clickCell(i) {
+    if (board[i] === "") {
+        board[i] = turn;
+        document.getElementsByClassName("cell")[i].innerHTML = turn;
+        turn = turn === "X" ? "O" : "X";
+    }
+}
+
+function resetGame() {
+    board = ["", "", "", "", "", "", "", "", ""];
+    turn = "X";
+    document.querySelectorAll(".cell").forEach(c => c.innerHTML = "");
+}
+
+function logout() {
+    window.location.href = "index.html";
+}
+</script>
+
+</body>
+</html>
